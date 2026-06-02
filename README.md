@@ -48,9 +48,45 @@ See how to build and ship a production-ready field technician app using Rayfin a
 ### 🚀 Getting started
 
 To get started with this demo:
-- Clone this repository
-- Set up your development environment
-- <!-- step 3 -->
+
+**Prerequisites:**
+- [Node.js](https://nodejs.org/) 20+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for the local Rayfin backend)
+
+**Steps:**
+
+1. Clone this repository and navigate to the app:
+
+   ```bash
+   git clone https://github.com/microsoft/Build26-DEM313-build-and-ship-production-ready-apps-fast-with-microsoft-fabric.git
+   cd Build26-DEM313-build-and-ship-production-ready-apps-fast-with-microsoft-fabric/src
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the Rayfin backend (requires Docker):
+
+   ```bash
+   npm run rayfin:dev
+   ```
+
+4. Generate and apply the database schema:
+
+   ```bash
+   npm run rayfin:db
+   ```
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open your browser to the URL shown in the terminal.
 
 ### 🧠 Learning Outcomes
 
@@ -64,13 +100,27 @@ By the end of this demo, you will be able to:
 
 ### 💬 Keep Learning with Copilot
 
-Try these prompts with GitHub Copilot to explore the topics from this demo. Open Copilot Chat in VS Code (`Ctrl+Alt+I` on Windows/Linux, `Cmd+Shift+I` on Mac), paste a prompt, and see what you learn. Try connecting the [Microsoft Learn MCP Server](#-microsoft-learn-mcp-server) for the latest official documentation.
+Try these prompts with GitHub Copilot to explore the topics from this demo. Open Copilot Chat in Visual Studio Code (`Ctrl+Alt+I` on Windows/Linux, `Cmd+Shift+I` on Mac), paste a prompt, and see what you learn. Try connecting the [Microsoft Learn MCP Server](#-microsoft-learn-mcp-server) for the latest official documentation.
 
 Use these as a starting point — or write your own!
 
-<!-- Prompts will be tailored to this session's content during repo setup. -->
+1. Understand Rayfin data modeling:
 
-> *Prompts coming soon — check back after the session content is finalized.*
+```
+Explain how Rayfin decorators like @entity(), @role(), @uuid(), and @text() work to define data entities with access control policies. Show me an example of a role-based policy that restricts data to the authenticated user.
+```
+
+2. Explore authentication patterns:
+
+```
+Using the Microsoft Learn MCP Server, find the latest documentation on Microsoft Fabric Entra authentication. Then explain how this demo app supports both local username/password and Fabric Entra sign-in using the builder pattern in RayfinAuthService.
+```
+
+3. Build on the demo:
+
+```
+Help me add a new "Equipment" management page to this field technician app. It should list equipment assigned to the current user, allow marking items as serviced, and use the existing Rayfin service layer pattern for data access.
+```
 
 ### 💻 Technologies Used
 
@@ -84,6 +134,8 @@ Use these as a starting point — or write your own!
 
 | Resource | Description |
 |:---------|:------------|
+| [Rayfin documentation](https://aka.ms/rayfin) | Official docs for building apps with Rayfin |
+| [Microsoft Fabric documentation](https://learn.microsoft.com/fabric/) | Microsoft Fabric product documentation |
 | [LAB514: Ship AI apps fast with a managed backend in Microsoft Fabric](https://github.com/microsoft/Build26-LAB514-ship-ai-apps-fast-with-a-managed-backend-in-microsoft-fabric) | Related hands-on lab for building apps with Rayfin and Microsoft Fabric |
 | [https://aka.ms/build26-next-steps](https://aka.ms/build26-next-steps) | Explore lab and demo repos to further your learning from Microsoft Build |
 
@@ -92,7 +144,7 @@ Use these as a starting point — or write your own!
 
 The Microsoft Learn MCP Server gives your AI agent direct access to Microsoft's official documentation — grounded, up-to-date answers about the products and services covered in this demo.
 
-**VS Code** — One click installation: 
+**Visual Studio Code** — One click installation: 
 
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Learn_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoft-learn&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D)
 
