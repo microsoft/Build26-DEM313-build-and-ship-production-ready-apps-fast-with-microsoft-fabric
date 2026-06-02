@@ -1,36 +1,3 @@
-# 🚀 Get Started
-
-**This repo is where attendees go to continue their learning after your session — and your Copilot agent will help you set it up.**
-
-### Step 1: Open your repo
-
-Open this repo in a **Codespace** (click the green **Code** button → **Create a Codespace**) — or clone it locally. Then open **GitHub Copilot Chat**.
-
-### Step 2: Add your content
-
-Give the agent something to work with. Drag files into the Explorer panel — session abstracts, outlines, screenshots, notes — and drop them in one of two places:
-
-| Where to put it | What goes there | Who sees it |
-|---|---|---|
-| **`_remove-before-publish/`** | Internal reference materials (abstracts, outlines, screenshots, planning docs) | **Copilot only** — never published |
-| **`/docs/`, `/src/`, or repo root** | Lab instructions, demo code, sample data, getting-started guides | **Attendees** — published with the repo |
-
-> 💡 Not sure? Start by dropping your session abstract or outline into `_remove-before-publish/`. The agent will figure out what to do with it.
-
-### Step 3: Ask the Agent
-
-Once your content is in the repo, use these three phrases with Copilot to build out your session repo:
-
-| Phrase to use with Copilot | What it does | When to run it |
-|---|---|---|
-| **"Help me get started"** | Sets up session title, description, outcomes, and owners | After you've added your session abstract or outline to the repo |
-| **"Help me refine content"** | Organizes your session content into the repo | Each time you add or update content |
-| **"Help me finalize"** | Final review, cleanup, and publication prep | When you're ready to publish |
-
-> 💡 **These three phrases are just the starting point.** Copilot can do much more — try asking it to brainstorm next steps for attendees, generate code samples, or build out your repo structure. Don't be afraid to put it in plan mode and ask for what you need.
-
----
-
 <a name="start-building"></a>
 <br>
 <p align="center">
@@ -39,62 +6,112 @@ Once your content is in the repo, use these three phrases with Copilot to build 
 
 # [Microsoft Build 2026](https://build.microsoft.com)
 
-## 🔥 BRKXXX: SESSION TITLE
+## 🔥 DEM313: Building and Ship Production-Ready Apps Fast with Rayfin and Microsoft Fabric
 
 ### Session Description
 
-*Add Session Description*
+See how to build and ship a production-ready field technician app using Rayfin and Microsoft Fabric. Walk through a real-world field technician scenario — adding authentication, data persistence with role-based access policies, job management, and customer tracking — then deploy to Fabric, all without managing backend infrastructure.
 
-### 🏫 Getting started in a guided session
+### 🚀 Getting started
 
-To get started in a guided lab session:
-- <!-- step 1 -->
-- <!-- step 2 -->
-- <!-- step 3 -->
+To get started with this demo:
 
-### 🏠 Getting started in your own environment
+**Prerequisites:**
+- [Node.js](https://nodejs.org/) 20+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for the local Rayfin backend)
 
-If you're following these steps at your own pace:
-- Clone this repository
-- Set up your development environment
-- <!-- step 3 -->
+**Steps:**
+
+1. Clone this repository and navigate to the app:
+
+   ```bash
+   git clone https://github.com/microsoft/Build26-DEM313-build-and-ship-production-ready-apps-fast-with-microsoft-fabric.git
+   cd Build26-DEM313-build-and-ship-production-ready-apps-fast-with-microsoft-fabric/src
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the Rayfin backend (requires Docker):
+
+   ```bash
+   npm run rayfin:dev
+   ```
+
+4. Generate and apply the database schema:
+
+   ```bash
+   npm run rayfin:db
+   ```
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open your browser to the URL shown in the terminal.
 
 ### 🧠 Learning Outcomes
 
-By the end of this session, you will be able to:
+By the end of this demo, you will be able to:
 
-- <!-- outcome 1 -->
-- <!-- outcome 2 -->
-- <!-- outcome 3 -->
+- Scaffold a production-ready React app with Rayfin and deploy it to Microsoft Fabric
+- Add authentication with dual sign-in support (local username/password and Fabric Entra)
+- Define data entities with role-based access policies using Rayfin decorators
+- Build a service layer for job management, customer tracking, and user profiles
+- Use GitHub Copilot to add new features and debug issues in your app
 
 ### 💬 Keep Learning with Copilot
 
-Try these prompts with GitHub Copilot to explore the topics from this session. Open Copilot Chat in VS Code (`Ctrl+Alt+I` on Windows/Linux, `Cmd+Shift+I` on Mac), paste a prompt, and see what you learn. Try connecting the [Microsoft Learn MCP Server](#-microsoft-learn-mcp-server) for the latest official documentation.
+Try these prompts with GitHub Copilot to explore the topics from this demo. Open Copilot Chat in Visual Studio Code (`Ctrl+Alt+I` on Windows/Linux, `Cmd+Shift+I` on Mac), paste a prompt, and see what you learn. Try connecting the [Microsoft Learn MCP Server](#-microsoft-learn-mcp-server) for the latest official documentation.
 
 Use these as a starting point — or write your own!
 
-<!-- Prompts will be tailored to this session's content during repo setup. -->
+1. Understand Rayfin data modeling:
 
-> *Prompts coming soon — check back after the session content is finalized.*
+```
+Explain how Rayfin decorators like @entity(), @role(), @uuid(), and @text() work to define data entities with access control policies. Show me an example of a role-based policy that restricts data to the authenticated user.
+```
+
+2. Explore authentication patterns:
+
+```
+Using the Microsoft Learn MCP Server, find the latest documentation on Microsoft Fabric Entra authentication. Then explain how this demo app supports both local username/password and Fabric Entra sign-in using the builder pattern in RayfinAuthService.
+```
+
+3. Build on the demo:
+
+```
+Help me add a new "Equipment" management page to this field technician app. It should list equipment assigned to the current user, allow marking items as serviced, and use the existing Rayfin service layer pattern for data access.
+```
 
 ### 💻 Technologies Used
 
-1. <!-- technology 1 -->
-1. <!-- technology 2 -->
-1. <!-- technology 3 -->
+1. [Rayfin](https://aka.ms/rayfin)
+1. [Microsoft Fabric](https://learn.microsoft.com/fabric/)
+1. [GitHub Copilot](https://github.com/features/copilot)
+1. [React](https://react.dev/) with TypeScript
+1. [Radix UI](https://www.radix-ui.com/) with Tailwind CSS
 
 ### 📚 Resources and Next Steps
 
 | Resource | Description |
 |:---------|:------------|
-| [https://aka.ms/build26-next-steps](https://aka.ms/build26-next-steps) | Explore lab and session repos to further your learning from Microsoft Build |
+| [Rayfin documentation](https://aka.ms/rayfin) | Official docs for building apps with Rayfin |
+| [Microsoft Fabric documentation](https://learn.microsoft.com/fabric/) | Microsoft Fabric product documentation |
+| [LAB514: Ship AI apps fast with a managed backend in Microsoft Fabric](https://github.com/microsoft/Build26-LAB514-ship-ai-apps-fast-with-a-managed-backend-in-microsoft-fabric) | Related hands-on lab for building apps with Rayfin and Microsoft Fabric |
+| [https://aka.ms/build26-next-steps](https://aka.ms/build26-next-steps) | Explore lab and demo repos to further your learning from Microsoft Build |
 
 
 ### 🌟 Microsoft Learn MCP Server
 
-The Microsoft Learn MCP Server gives your AI agent direct access to Microsoft's official documentation — grounded, up-to-date answers about the products and services covered in this session.
+The Microsoft Learn MCP Server gives your AI agent direct access to Microsoft's official documentation — grounded, up-to-date answers about the products and services covered in this demo.
 
-**VS Code** — One click installation: 
+**Visual Studio Code** — One click installation: 
 
 [![Install in VS Code](https://img.shields.io/badge/VS_Code-Install_Microsoft_Learn_MCP-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=microsoft-learn&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Flearn.microsoft.com%2Fapi%2Fmcp%22%7D)
 
@@ -108,17 +125,12 @@ For more info, other clients, and to post questions, visit the [Learn MCP Server
 
 ## Content Owners
 
-<!-- TODO: Add yourself as a content owner
-1. Change the src in the image tag to {your github url}.png
-2. Change INSERT NAME HERE to your name
-3. Change the github url in the final href to your url. -->
-
 <table>
 <tr>
-    <td align="center"><a href="http://github.com/yourGitHubHandle">
-        <img src="https://github.com/yourGitHubHandle.png" width="100px;" alt="INSERT NAME HERE"/><br />
-        <sub><b>INSERT NAME HERE</b></sub></a><br />
-            <a href="https://github.com/yourGitHubHandle" title="talk">📢</a>
+    <td align="center"><a href="https://github.com/christopheranderson">
+        <img src="https://github.com/christopheranderson.png" width="100px;" alt="Chris Anderson"/><br />
+        <sub><b>Chris Anderson</b></sub></a><br />
+            <a href="https://github.com/christopheranderson" title="talk">📢</a>
     </td>
 </tr></table>
 
