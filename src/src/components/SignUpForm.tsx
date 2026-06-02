@@ -10,7 +10,6 @@ import { SignupForm, type SignupFormValues } from '@/components/ui/signup-form';
 
 const signUpSchema = z
   .object({
-    name: z.string().min(1, 'Full name is required'),
     email: z.string().email('Please enter a valid email address'),
     password: z.string().min(8, 'Password must be at least 8 characters'),
     confirmPassword: z.string(),
@@ -24,8 +23,7 @@ interface SignUpFormProps {
   className?: string;
   onSubmit: (
     email: string,
-    password: string,
-    name: string
+    password: string
   ) => Promise<{ emailVerified: boolean }>;
   onSwitchToSignIn: () => void;
 }
@@ -49,7 +47,6 @@ export function SignUpForm({
   } = useForm<SignupFormValues>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      name: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -61,7 +58,7 @@ export function SignUpForm({
     setIsLoading(true);
 
     try {
-      const result = await onSubmit(values.email, values.password, values.name);
+      const result = await onSubmit(values.email, values.password);
       setSuccess({ emailVerified: result.emailVerified, email: values.email });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Sign up failed');

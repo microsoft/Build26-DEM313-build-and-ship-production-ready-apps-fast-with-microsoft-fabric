@@ -21,7 +21,7 @@ import http from 'http';
 import { homedir } from 'os';
 import { debuglog } from 'node:util';
 
-const IMAGE = 'ghcr.io/microsoft/project-rayfin/webservice';
+const IMAGE = 'ghcr.io/microsoft/rayfin/webservice';
 const debug = debuglog('rayfin_ghcr_check');
 
 function envFlagEnabled(value) {

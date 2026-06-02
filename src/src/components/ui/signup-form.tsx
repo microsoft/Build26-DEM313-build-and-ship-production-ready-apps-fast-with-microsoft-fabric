@@ -21,7 +21,6 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
 export interface SignupFormValues {
-  name: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -63,18 +62,6 @@ export function SignupForm({
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
               )}
-
-              <Field data-invalid={!!errors.name}>
-                <FieldLabel htmlFor="name">Full Name</FieldLabel>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  autoComplete="name"
-                  {...register('name')}
-                />
-                <FieldError>{errors.name?.message}</FieldError>
-              </Field>
 
               <Field data-invalid={!!errors.email}>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
