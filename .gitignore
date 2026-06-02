@@ -22,8 +22,26 @@ Thumbs.db
 .env.local
 .env.*.local
 
-# Dependencies (if applicable)
+# Dependencies
 node_modules/
 __pycache__/
 *.pyc
 .venv/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Rayfin temp/generated files
+**/rayfin/.temp/
+**/rayfin/.deployments.json
+
+# Keys and certs
+keys/
+*.pem
+
+# Additional env patterns
+.env.fabric
+.env.fabric-*
+.env.template
+.env.production
