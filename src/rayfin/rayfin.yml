@@ -1,21 +1,16 @@
-id: field-technician-app
-name: field-technician-app
+id: field-technician
+name: field-technician
 version: 1.0.0
 services:
   auth:
     enabled: true
-    customClaims:
-      app_version: 1.0.0
-    scopes:
-      - read:data
-      - write:data
+    fabric:
+      enabled: true
     password:
       enabled: true
     allowedRedirectUris:
       - http://localhost:5173
       - http://localhost:5173/auth/callback
-    fabric:
-      enabled: true
   data:
     enabled: true
     dialect: mssql
@@ -24,5 +19,5 @@ services:
   staticHosting:
     enabled: true
     folder: dist
-    buildCommand: npm run build:fabric
+    buildCommand: npm run build
     indexDocument: index.html

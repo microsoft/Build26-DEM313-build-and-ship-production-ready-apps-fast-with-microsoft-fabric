@@ -1,49 +1,52 @@
-# AI Agent Guidelines
+# AGENTS.md
 
-This file contains instructions and guidelines for AI agents working on this repository.
+This project ships Rayfin agent context.
+Load `.agents/skills/rayfin/SKILL.md` and the `rayfin` MCP server in `.mcp.json` before writing Rayfin code.
 
-## 🔒 Security Best Practices
+## ⚠️ Experimental features
 
-**Never commit sensitive information to this repository:**
-- API keys, tokens, or credentials
-- Personal access tokens (PATs)
-- Database connection strings with passwords
-- Environment-specific configuration values
+This template uses two **experimental** Rayfin features that may change or break:
 
-**For MCP configuration files (`mcp.json`):**
-- Use placeholder values like `"YOUR_API_KEY_HERE"` or `"${API_KEY}"`
-- Reference environment variables for sensitive data
-- Include documentation about required environment variables
+1. **Username/password authentication** — uses `client.auth.signIn/signUp({ email, password })` rather than the production Fabric brokered auth flow. The API surface is not yet stable and may not be fully documented.
+2. **Docker local hosting (`rayfin dev`)** — runs the full Rayfin backend locally in Docker containers. Requires the `RAYFIN_FEATURE_FLAGS=docker-local-dev` feature flag and a published container image matching the CLI version.
 
-## 📋 Repository Guidelines
+When working with auth code, refer to the existing `RayfinAuthService` and `ServiceContainer` implementations rather than MCP docs, since the password auth API may not be documented yet.
 
-### Purpose
-This repository is a Microsoft Build 2026 session content repository and should:
-- Provide clear, actionable content for session attendees
-- Support self-guided learning for remote/at-home learners
-- Follow the structure established by GUIDANCE.md
+## Development workflows
 
-### What NOT to modify without permission:
-- License files (`LICENSE`, `LICENSE-DOCS`, `CODE_OF_CONDUCT.md`)
-- Security files (`SECURITY.md`)
-- GitHub workflow files in `.github/` directory
+Three modes are available:
 
-### Content Rules
-- No large binary files (PowerPoint decks, videos, recordings) in the repo
-- Links to slides and recordings are fine — just don't host the actual files
-- All README files should be kept up to date
-- Unused folders (containing only a placeholder README) should be removed before release
+- **`npm run dev:local`** — Full local. Runs the Rayfin backend in Docker, generates env, starts Vite.
+- **`npm run dev:local:stop`** — Stop local Docker containers (keeps data).
+- **`npm run dev:local:down`** — Remove local Docker containers (keeps volumes).
+- **`npm run dev:local:purge`** — Purge containers and volumes (full reset).
+- **`npm run dev`** — Cloud backend. Deploys to Fabric (`rayfin up`), starts Vite against the remote API.
+- **`npm run up`** — Deploy only. Deploys to Fabric without a local dev server.
 
-### Issue Management
-When a user reports a problem, asks a question that should be tracked, or wants to file an issue:
+### Running `rayfin dev` commands
 
-1. **Discover available templates** — Check `.github/ISSUE_TEMPLATE/` for any `.yml` or `.md` template files. Read them to understand what fields and labels each template expects.
-2. **Match the request to a template** — Based on what the user is describing, pick the best-fit template. If no templates exist, create a plain issue.
-3. **Help the user fill in the fields** — Walk through the template's required fields interactively, proposing answers where possible.
-4. **Create the issue** — Use `gh issue create --template <template-file>` if a template matches, or `gh issue create` for a plain issue.
-5. **Apply labels** — Check `gh label list` to see what labels exist in the repo. Apply relevant labels based on the issue type. Don't try to apply labels that don't exist.
+Use `npm run rayfin:dev` to invoke `rayfin dev` with the required feature flag already set:
 
-When reviewing open issues at the start of each phase, summarize them and propose actions — this behavior already exists in the Issue Tracking and Commits section of GUIDANCE.md.
+```bash
+npm run rayfin:dev             # start Docker containers
+npm run rayfin:dev -- status   # check container status
+npm run dev:local:stop         # stop containers
+npm run dev:local:down         # remove containers
+npm run dev:local:purge        # purge containers and volumes
+npm run rayfin:db              # apply database migrations
+```
 
-### Getting Started
-If this repo still has a `GUIDANCE.md` file, that means setup isn't complete yet. Read it and follow the instructions to prepare the repo for publication.
+If invoking `rayfin dev` directly (without npm scripts), you **must** set the feature flag:
+
+```bash
+RAYFIN_FEATURE_FLAGS=docker-local-dev rayfin dev [options]
+```
+
+## Rayfin docs
+
+Rayfin docs are version-locked to the packages installed in this project.
+Prefer the MCP tools `search_docs`, `get_doc`, `list_docs`, and `discover_packages` for examples, API details, and troubleshooting.
+If MCP is unavailable, run `rayfin docs ...` from the project root so the CLI reads this project's `node_modules`.
+If `rayfin` is not on `PATH`, use `npx -y @microsoft/rayfin-cli docs ...` from the project root.
+
+Use `discover_packages` or `rayfin docs discover <topic>` when installed docs do not cover the task.

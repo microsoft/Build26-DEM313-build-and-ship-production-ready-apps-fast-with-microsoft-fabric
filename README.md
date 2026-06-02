@@ -18,7 +18,8 @@ To get started with this demo:
 
 **Prerequisites:**
 - [Node.js](https://nodejs.org/) 20+
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for the local Rayfin backend)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for local development)
+- [GitHub CLI](https://cli.github.com/) authenticated with `read:packages` scope (for pulling container images)
 
 **Steps:**
 
@@ -35,25 +36,32 @@ To get started with this demo:
    npm install
    ```
 
-3. Start the Rayfin backend (requires Docker):
+3. Start local development (runs the full Rayfin backend in Docker — no Fabric workspace needed):
 
    ```bash
-   npm run rayfin:dev
+   npm run dev:local
    ```
 
-4. Generate and apply the database schema:
-
-   ```bash
-   npm run rayfin:db
-   ```
-
-5. Start the development server:
+   Or, to deploy to a Fabric workspace and start the dev server:
 
    ```bash
    npm run dev
    ```
 
-6. Open your browser to the URL shown in the terminal.
+4. Open your browser to the URL shown in the terminal.
+
+**Additional scripts:**
+
+| Script | Description |
+| --- | --- |
+| `npm run dev` | Deploy to Fabric and start Vite dev server |
+| `npm run dev:local` | Start Docker backend and Vite dev server |
+| `npm run dev:local:stop` | Stop local Docker containers (keeps data) |
+| `npm run dev:local:down` | Remove local Docker containers (keeps volumes) |
+| `npm run dev:local:purge` | Purge containers and volumes (full reset) |
+| `npm run build` | Type-check and build for production |
+| `npm run lint` | Run ESLint |
+| `npm run test` | Run tests with Vitest |
 
 ### 🧠 Learning Outcomes
 
