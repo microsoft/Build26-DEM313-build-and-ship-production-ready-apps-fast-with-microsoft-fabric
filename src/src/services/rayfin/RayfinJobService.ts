@@ -191,10 +191,11 @@ export class RayfinJobService implements IJobService {
     });
   }
 
-  async getEquipment(_jobId: string): Promise<Equipment[]> {
+  async getEquipment(jobId: string): Promise<Equipment[]> {
     const client = getRayfinClient();
     return client.data.Equipment
       .select(['id', 'name', 'serialNumber', 'notes'])
+      .where({ job: { id: { eq: jobId } } })
       .execute();
   }
 
@@ -227,10 +228,11 @@ export class RayfinJobService implements IJobService {
     });
   }
 
-  async getTaskItems(_jobId: string): Promise<TaskItem[]> {
+  async getTaskItems(jobId: string): Promise<TaskItem[]> {
     const client = getRayfinClient();
     return client.data.TaskItem
       .select(['id', 'description', 'isComplete', 'sortOrder'])
+      .where({ job: { id: { eq: jobId } } })
       .orderBy({ sortOrder: 'asc' })
       .execute();
   }
@@ -265,10 +267,11 @@ export class RayfinJobService implements IJobService {
     });
   }
 
-  async getJobLogs(_jobId: string): Promise<JobLog[]> {
+  async getJobLogs(jobId: string): Promise<JobLog[]> {
     const client = getRayfinClient();
     return client.data.JobLog
       .select(['id', 'type', 'message', 'imageUrl', 'actor_id', 'createdAt'])
+      .where({ job: { id: { eq: jobId } } })
       .orderBy({ createdAt: 'desc' })
       .execute();
   }
